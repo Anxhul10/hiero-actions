@@ -42,6 +42,19 @@ app.octokit.log.debug(`Authenticated as '${data.name}'`)
 // Subscribe to the "pull_request.opened" webhook event
 app.webhooks.on('pull_request', async ({ octokit, payload }) => {
   console.log(`Received a pull request event for #${payload.pull_request.number}`)
+
+  await octokit.request(
+  'POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches',
+    {
+      owner: 'Anxhul10',
+      repo: 'hiero-actions',
+      workflow_id: 'manual_trigger.yaml',
+      ref: 'main'
+    }
+  )
+
+  console.log('Workflow dispatch triggered!')
+
   try {
     // check commit is signed or not
     // Read config file from target repository
