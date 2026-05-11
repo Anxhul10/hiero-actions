@@ -24,5 +24,5 @@ module.exports = async ({ github, context }) => {
       failures.push(`Missing DCO signoff: ${commit.sha}`);
     }
   }
-  
+  console.log(failures);
 };
