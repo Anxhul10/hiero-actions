@@ -1,6 +1,6 @@
 module.exports = async ({ github, context }) => {
-  const owner = context.repo.owner;
-  const repo = context.repo.repo;
+  const owner = process.env.TARGET_OWNER;
+  const repo = process.env.TARGET_REPO;
 
   const prNumber = process.env.PR_NUMBER;
 

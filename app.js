@@ -44,14 +44,16 @@ app.webhooks.on('pull_request', async ({ octokit, payload }) => {
   console.log(`Received a pull request event for #${payload.pull_request.number}`)
 
   await octokit.request(
-  'POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches',
+    'POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches',
     {
       owner: 'Anxhul10',
       repo: 'hiero-actions',
       workflow_id: 'verify-commits.yaml',
       ref: 'main',
       inputs: {
-        pr_number: String(payload.pull_request.number)
+        pr_number: String(payload.pull_request.number),
+        repo_owner: payload.repository.owner.login,
+        repo_name: payload.repository.name
       }
     }
   )
