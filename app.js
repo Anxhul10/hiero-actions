@@ -48,8 +48,11 @@ app.webhooks.on('pull_request', async ({ octokit, payload }) => {
     {
       owner: 'Anxhul10',
       repo: 'hiero-actions',
-      workflow_id: 'manual_trigger.yaml',
-      ref: 'main'
+      workflow_id: 'verify-commits.yml',
+      ref: 'main',
+      inputs: {
+        pr_number: String(payload.pull_request.number)
+      }
     }
   )
 
