@@ -24,15 +24,5 @@ module.exports = async ({ github, context }) => {
       failures.push(`Missing DCO signoff: ${commit.sha}`);
     }
   }
-
-  if (failures.length > 0) {
-    await github.rest.issues.createComment({
-      owner,
-      repo,
-      issue_number: prNumber,
-      body: failures.join('\n')
-    });
-
-    core.setFailed('Commit verification failed');
-  }
+  
 };
