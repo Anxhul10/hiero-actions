@@ -20,7 +20,7 @@ jobs:
           PR_NUMBER: ${{ inputs.pr_number }}
         with:
           script: |
-            const script = require('./.github/scripts/verify-commits.js');
+            const script = require('./.github/scripts/verify-commits.cjs');
 
             await script({
               github,
